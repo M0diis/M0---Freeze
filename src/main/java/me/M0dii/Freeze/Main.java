@@ -62,6 +62,7 @@ public class Main extends JavaPlugin
         Config.load(this);
     
         getCommand("freeze").setExecutor(new FreezeCommand(this));
+        getCommand("unfreeze").setExecutor(new UnfreezeCommand(this));
         
         this.manager.registerEvents(new FreezeListener(this), this);
     }

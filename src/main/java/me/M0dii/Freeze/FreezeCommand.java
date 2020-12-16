@@ -25,12 +25,27 @@ public class FreezeCommand implements CommandExecutor
         {
             Player s = (Player)sender;
     
+            if(!s.hasPermission("m0freeze.freeze"))
+            {
+                s.sendMessage(Config.NO_PERMISSION);
+        
+                return true;
+            }
+    
             if(args.length == 1)
             {
+                
                 Player p = Bukkit.getPlayer(args[0]);
                 
                 if(p != null)
                 {
+                    if(p.hasPermission("m0freeze.bypass"))
+                    {
+                        s.sendMessage(Config.CANT_FREEZE);
+                        
+                        return true;
+                    }
+                    
                     if(!this.plugin.getFrozenPlayers().contains(p.getUniqueId()))
                     {
                         this.plugin.freezePlayer(p);

@@ -25,6 +25,13 @@ public class UnfreezeCommand implements CommandExecutor
         {
             Player s = (Player)sender;
     
+            if(!s.hasPermission("m0freeze.unfreeze"))
+            {
+                s.sendMessage(Config.NO_PERMISSION);
+        
+                return true;
+            }
+    
             if(args.length == 1)
             {
                 Player p = Bukkit.getPlayer(args[0]);

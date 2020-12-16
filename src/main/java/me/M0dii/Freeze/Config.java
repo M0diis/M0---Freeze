@@ -11,6 +11,7 @@ public class Config
     public static String TO_PLAYER_FREEZE;
     public static String TO_PLAYER_UNFREEZE;
     public static String NOT_FROZEN;
+    public static String CANT_FREEZE;
     public static boolean DENY_JUMP;
     
     public static void load(Main plugin)
@@ -23,6 +24,7 @@ public class Config
         TO_PLAYER_FREEZE = format(cfg.getString("M0-Freeze.ToPlayerFreeze"));
         TO_PLAYER_UNFREEZE = format(cfg.getString("M0-Freeze.ToPlayerUnfreeze"));
         NOT_FROZEN = format(cfg.getString("M0-Freeze.NotFrozen"));
+        CANT_FREEZE = format(cfg.getString("M0-Freeze.CantFreeze"));
         DENY_JUMP = cfg.getBoolean("M0-Freeze.DenyJump");
     }
     

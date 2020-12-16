@@ -1,0 +1,8 @@
+M0-Freeze:
+  NoPermission: '&4You do not have permission to use this command.'
+  ToStaffFreeze: 'You successfully frozen the player.'
+  ToStaffUnfreeze: 'You successfully unfrozen the player.'
+  ToPlayerFreeze: 'You have been frozen.'
+  ToPlayerUnfreeze: 'You have been unfrozen.'
+  NotFrozen: 'Player is not frozen.'
+  DenyJump: false

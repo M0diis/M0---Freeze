@@ -64,6 +64,6 @@ public class FreezeCommand implements CommandExecutor
             }
         }
 
-        return false;
+        return true;
     }
 }

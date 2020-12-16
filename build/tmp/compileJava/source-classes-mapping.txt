@@ -6,3 +6,5 @@ me/M0dii/Freeze/Main.java
  me.M0dii.Freeze.Main
 me/M0dii/Freeze/FreezeCommand.java
  me.M0dii.Freeze.FreezeCommand
+me/M0dii/Freeze/UnfreezeCommand.java
+ me.M0dii.Freeze.UnfreezeCommand

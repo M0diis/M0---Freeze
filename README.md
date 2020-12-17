@@ -2,3 +2,10 @@
 
 # M0-Freeze
 Minecraft freeze plugin.
+
+## Building
+To build the plugin yourself, you need JDK 8 or higher installed on your system. Then, run the following command:
+
+```
+gradlew build
+```

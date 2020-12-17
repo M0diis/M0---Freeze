@@ -3,7 +3,7 @@
 ## M0-Freeze
 A simple minecraft freeze plugin.
 
-Commands and permissions can be found `in src/main/resources/plugin.yml`.
+Commands and permissions can be found in `./src/main/resources/plugin.yml`.
 
 ## Building
 To build the plugin yourself, you need JDK 8 or higher installed on your system. Then, run the following command:

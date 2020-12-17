@@ -4,9 +4,11 @@ import com.destroystokyo.paper.event.player.PlayerJumpEvent;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
+import org.bukkit.event.player.PlayerCommandPreprocessEvent;
 import org.bukkit.event.player.PlayerMoveEvent;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.UUID;
 
 public class FreezeListener implements Listener
@@ -44,6 +46,29 @@ public class FreezeListener implements Listener
             if(Config.DENY_JUMP)
             {
                 e.setCancelled(true);
+            }
+        }
+    }
+    
+    @EventHandler
+    public void cancelCommands(PlayerCommandPreprocessEvent e)
+    {
+        if(Config.BLOCK_CMDS)
+        {
+            List<String> blockedCmds = Config.BLOCKED_CMDS;
+            
+            String[] args = e.getMessage().split(" ");
+    
+            String cmd = args[0];
+    
+            for(String blocked : blockedCmds)
+            {
+                if(cmd.equalsIgnoreCase(blocked))
+                {
+                    e.setCancelled(true);
+                    
+                    e.getPlayer().sendMessage(Config.ACTION_BLOCKED);
+                }
             }
         }
     }

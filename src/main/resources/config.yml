@@ -7,3 +7,7 @@ M0-Freeze:
   CantFreeze: '&cThis player cannot be frozen.'
   NotFrozen: '&cThis player is not frozen.'
   DenyJump: false
+  ActionBlocked: '&cYou cannot do that while you are frozen.'
+  BlockCommands: false
+  BlockedCommands:
+    - '/msg'

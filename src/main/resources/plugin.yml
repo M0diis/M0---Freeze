@@ -1,7 +1,7 @@
 name: M0-Freeze
-main: me.m0dii.freeze.Main
+main: me.m0dii.freeze.FreezePlugin
 description: M0-Freeze
-version: 1.0
+version: ${version}
 api-version: 1.13
 author: M0dii
 commands:

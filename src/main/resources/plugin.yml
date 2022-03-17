@@ -1,8 +1,8 @@
 name: M0-Freeze
-main: me.M0dii.Freeze.Main
+main: me.m0dii.freeze.Main
 description: M0-Freeze
 version: 1.0
-api-version: 1.16
+api-version: 1.13
 author: M0dii
 commands:
   freeze:

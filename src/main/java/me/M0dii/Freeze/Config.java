@@ -1,4 +1,4 @@
-package me.M0dii.Freeze;
+package me.m0dii.freeze;
 
 import org.bukkit.ChatColor;
 import org.bukkit.configuration.file.FileConfiguration;
@@ -7,37 +7,111 @@ import java.util.List;
 
 public class Config
 {
-    public static String NO_PERMISSION;
-    public static String TO_STAFF_FREEZE;
-    public static String TO_STAFF_UNFREEZE;
-    public static String TO_PLAYER_FREEZE;
-    public static String TO_PLAYER_UNFREEZE;
-    public static String NOT_FROZEN;
-    public static String CANT_FREEZE;
-    public static String ACTION_BLOCKED;
-    public static List<String> BLOCKED_CMDS;
-    public static boolean DENY_JUMP;
-    public static boolean BLOCK_CMDS;
+    private String noPermission;
+    
+    private String toStaffFreeze;
+    private String toStaffUnfreeze;
+    
+    private String toPlayerFreeze;
+    private String toPlayerUnfreeze;
+    private String notFrozen;
+    private String cantFreeze;
+    
+    private String denyMessage;
+    private List<String> blockedCmds;
+    
+    private boolean denyJump;
+    private boolean blockCmds;
+    private boolean blockIsWhitelist;
+    
+    private String usageFreeze;
+    private String usageUnfreeze;
+    
+    public Config(FreezePlugin plugin)
+    {
+        load(plugin);
+    }
 
-    public static void load(Main plugin)
+    public void load(FreezePlugin plugin)
     {
         FileConfiguration cfg = plugin.getConfig();
     
-        NO_PERMISSION = format(cfg.getString("M0-Freeze.NoPermission"));
-        TO_STAFF_FREEZE = format(cfg.getString("M0-Freeze.ToStaffFreeze"));
-        TO_STAFF_UNFREEZE = format(cfg.getString("M0-Freeze.ToStaffUnfreeze"));
-        TO_PLAYER_FREEZE = format(cfg.getString("M0-Freeze.ToPlayerFreeze"));
-        TO_PLAYER_UNFREEZE = format(cfg.getString("M0-Freeze.ToPlayerUnfreeze"));
-        NOT_FROZEN = format(cfg.getString("M0-Freeze.NotFrozen"));
-        CANT_FREEZE = format(cfg.getString("M0-Freeze.CantFreeze"));
-        DENY_JUMP = cfg.getBoolean("M0-Freeze.DenyJump");
-        ACTION_BLOCKED = format(cfg.getString("M0-Freeze.ActionBlocked"));
-        BLOCKED_CMDS = cfg.getStringList("M0-Freeze.BlockedCommands");
-        BLOCK_CMDS = cfg.getBoolean("M0-Freeze.BlockCommands");
+        noPermission = format(cfg.getString("no-permission"));
+        toStaffFreeze = format(cfg.getString("M0-Freeze.ToStaffFreeze"));
+        toStaffUnfreeze = format(cfg.getString("M0-Freeze.ToStaffUnfreeze"));
+        toPlayerFreeze = format(cfg.getString("M0-Freeze.ToPlayerFreeze"));
+        toPlayerUnfreeze = format(cfg.getString("M0-Freeze.ToPlayerUnfreeze"));
+        notFrozen = format(cfg.getString("not-frozen"));
+        cantFreeze = format(cfg.getString("cant-freeze"));
+        denyJump = cfg.getBoolean("deny-jump");
+        denyMessage = format(cfg.getString("deny-message"));
+        
+        blockedCmds = cfg.getStringList("block-commands.commands");
+        blockCmds = cfg.getBoolean("block-commands.enabled");
+        blockIsWhitelist = cfg.getBoolean("block-commands.whitelist");
+        
+        usageFreeze = format(cfg.getString("usage.freeze"));
+        usageUnfreeze = format(cfg.getString("usage.unfreeze"));
     }
     
     private static String format(String text)
     {
         return ChatColor.translateAlternateColorCodes('&', text);
+    }
+    public String getNoPermission()
+    {
+        return noPermission;
+    }
+    public String getToStaffFreeze()
+    {
+        return toStaffFreeze;
+    }
+    public String getToStaffUnfreeze()
+    {
+        return toStaffUnfreeze;
+    }
+    public String getToPlayerFreeze()
+    {
+        return toPlayerFreeze;
+    }
+    public String getToPlayerUnfreeze()
+    {
+        return toPlayerUnfreeze;
+    }
+    public String getNotFrozen()
+    {
+        return notFrozen;
+    }
+    public String getCantFreeze()
+    {
+        return cantFreeze;
+    }
+    public String getDenyMessage()
+    {
+        return denyMessage;
+    }
+    public List<String> getBlockedCmds()
+    {
+        return blockedCmds;
+    }
+    public boolean isDenyJump()
+    {
+        return denyJump;
+    }
+    public boolean isBlockCmds()
+    {
+        return blockCmds;
+    }
+    public String getUsageFreeze()
+    {
+        return usageFreeze;
+    }
+    public String getUsageUnfreeze()
+    {
+        return usageUnfreeze;
+    }
+    public boolean isBlockWhitelist()
+    {
+        return blockIsWhitelist;
     }
 }

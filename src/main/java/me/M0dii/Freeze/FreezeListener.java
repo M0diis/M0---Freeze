@@ -1,4 +1,4 @@
-package me.M0dii.Freeze;
+package me.m0dii.freeze;
 
 import com.destroystokyo.paper.event.player.PlayerJumpEvent;
 import org.bukkit.entity.Player;
@@ -7,30 +7,26 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerCommandPreprocessEvent;
 import org.bukkit.event.player.PlayerMoveEvent;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.UUID;
-
 public class FreezeListener implements Listener
 {
-    private final Main plugin;
+    private final FreezePlugin plugin;
+    private final Config cfg;
     
-    
-    
-    public FreezeListener(Main plugin)
+    public FreezeListener(FreezePlugin plugin)
     {
         this.plugin = plugin;
+        this.cfg = plugin.getCfg();
     }
     
-    private boolean has(Player p)
+    private boolean isFrozen(Player p)
     {
         return this.plugin.getFrozenPlayers().contains(p.getUniqueId());
     }
     
     @EventHandler
-    public void cancelOnMoveEvent(PlayerMoveEvent e)
+    public void onMoveEvent(PlayerMoveEvent e)
     {
-        if(has(e.getPlayer()))
+        if(isFrozen(e.getPlayer()))
         {
             e.setTo(e.getFrom());
             
@@ -39,11 +35,11 @@ public class FreezeListener implements Listener
     }
     
     @EventHandler
-    public void cancelOnJumpEvent(PlayerJumpEvent e)
+    public void onJumpEvent(PlayerJumpEvent e)
     {
-        if(has(e.getPlayer()))
+        if(isFrozen(e.getPlayer()))
         {
-            if(Config.DENY_JUMP)
+            if(cfg.isDenyJump())
             {
                 e.setCancelled(true);
             }
@@ -53,23 +49,48 @@ public class FreezeListener implements Listener
     @EventHandler
     public void cancelCommands(PlayerCommandPreprocessEvent e)
     {
-        if(Config.BLOCK_CMDS)
+        if(!cfg.isBlockCmds())
         {
-            List<String> blockedCmds = Config.BLOCKED_CMDS;
-            
-            String[] args = e.getMessage().split(" ");
-    
-            String cmd = args[0];
-    
-            for(String blocked : blockedCmds)
+            return;
+        }
+        
+        String cmd = e.getMessage().split(" ")[0];
+        
+        if(cfg.isBlockWhitelist())
+        {
+            for(String blocked : cfg.getBlockedCmds())
             {
                 if(cmd.equalsIgnoreCase(blocked))
                 {
                     e.setCancelled(true);
-                    
-                    e.getPlayer().sendMessage(Config.ACTION_BLOCKED);
+            
+                    e.getPlayer().sendMessage(cfg.getDenyMessage());
+            
+                    break;
                 }
             }
         }
+        else
+        {
+            boolean block = true;
+            
+            for(String blocked : cfg.getBlockedCmds())
+            {
+                if(cmd.equalsIgnoreCase(blocked))
+                {
+                    block = false;
+                    
+                    break;
+                }
+            }
+            
+            if(block)
+            {
+                e.setCancelled(true);
+                
+                e.getPlayer().sendMessage(cfg.getDenyMessage());
+            }
+        }
+
     }
 }

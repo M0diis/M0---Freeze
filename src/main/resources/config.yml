@@ -1,13 +1,18 @@
-M0-Freeze:
-  NoPermission: '&4You do not have permission to use this command.'
-  ToStaffFreeze: '&2You successfully frozen the player.'
-  ToStaffUnfreeze: '&2You successfully unfrozen the player.'
-  ToPlayerFreeze: '&cYou have been frozen.'
-  ToPlayerUnfreeze: '&2You have been unfrozen.'
-  CantFreeze: '&cThis player cannot be frozen.'
-  NotFrozen: '&cThis player is not frozen.'
-  DenyJump: false
-  ActionBlocked: '&cYou cannot do that while you are frozen.'
-  BlockCommands: false
-  BlockedCommands:
+no-permission: '&4You do not have permission to use this command.'
+staff-frozen: '&2You successfully frozen the player.'
+staff-unfrozen: '&2You successfully unfrozen the player.'
+player-frozen: '&cYou have been frozen.'
+player-unfrozen: '&2You have been unfrozen.'
+cant-freeze: '&cThis player cannot be frozen.'
+not-frozen: '&cThis player is not frozen.'
+deny-message: '&cYou cannot do that while you are frozen.'
+usage:
+  freeze: '&cUsage: /freeze <player>'
+  unfreeze: '&cUsage: /unfreeze <player>'
+
+deny-jump: false
+block-commands:
+  enabled: true
+  whitelist: true # Only commands in the list will be blocked
+  commands:
     - '/msg'
